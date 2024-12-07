@@ -9,23 +9,19 @@
  */
 int is_perfect_recursive(const binary_tree_t *tree, int depth)
 {
-    // If tree is NULL, return depth 0
+
     if (!tree)
         return (depth);
 
-    // If it's a leaf node
     if (!tree->left && !tree->right)
         return (depth);
 
-    // If node has only one child, it's not perfect
     if (!tree->left || !tree->right)
         return (0);
 
-    // Recursively check left and right subtrees
     int left_depth = is_perfect_recursive(tree->left, depth + 1);
     int right_depth = is_perfect_recursive(tree->right, depth + 1);
 
-    // Check if both subtrees have the same depth and are perfect
     return ((left_depth == right_depth && left_depth != 0) ? left_depth : 0);
 }
 
@@ -37,10 +33,9 @@ int is_perfect_recursive(const binary_tree_t *tree, int depth)
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-    // If tree is NULL, return 0
+
     if (!tree)
         return (0);
 
-    // Call recursive helper starting from depth 0
     return (is_perfect_recursive(tree, 0) != 0);
 }
